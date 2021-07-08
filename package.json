@@ -1,0 +1,33 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "magentaTutorial.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@q42philips/hue-color-converter": "^1.0.0",
+    "body-parser": "^1.19.0",
+    "chance": "^1.1.7",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "johnny-five": "^2.0.0",
+    "jzz": "^1.2.7",
+    "jzz-midi-smf": "^1.4.4",
+    "keypress": "^0.2.1",
+    "node-fetch": "^2.6.1",
+    "socket.io": "^3.1.0",
+    "sound-play": "^1.1.0",
+    "webmidi": "^3.0.0-alpha.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "ts-loader": "^8.0.14",
+    "typescript": "^4.1.3"
+  }
+}
