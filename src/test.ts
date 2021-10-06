@@ -27,8 +27,8 @@ import {
 import {
     Chord
 } from './specials/Chord.js';
-
-const {WebMidi}: any = require("webmidi");
+import WebMidi from 'webmidi';
+//const {WebMidi}: any = require("webmidi");
 
 
 WebMidi.enable().then(onEnabled).catch((err: any) => console.log(err));
