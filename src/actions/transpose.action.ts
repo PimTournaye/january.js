@@ -1,11 +1,11 @@
-import Button from "./action";
-import { Key } from "../logic/Key";
-import { Mode } from "../logic/Mode";
+import Action from "./action";
+import Key from "../logic/Key";
+import mode  from "../logic/Mode";
 
-class Transpose extends Button{
+class Transpose extends Action{
     onPress(): void {
         console.log('changing mode')
-        Mode.change();
+        mode.change();
         console.log('changing key')
         Key.change();
         console.log('playing transposition chord')

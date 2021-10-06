@@ -1,7 +1,7 @@
-import Button from "./action";
-import { Note } from "../logic/Note";
+import Action from "./action";
+import note from "../logic/Note";
 
-class Octave extends Button{
+class Octave extends Action{
 
     onPress(): void {
         this.playNote();
@@ -12,14 +12,14 @@ class Octave extends Button{
         let octaveTone:String = "";
         let octaveDownorUp: Array<number> = [-12, 12]
 
-        for (let i = 0; i < Note.DATABASE.length; i++) {
-            if (Note.lastAbsolute == Note.DATABASE[i]) {
+        for (let i = 0; i < note.DATABASE.length; i++) {
+            if (note.lastAbsolute == note.DATABASE[i]) {
                 console.log('playing octave tone')
-				while (octaveTone == "" || octaveTone == null) octaveTone = Note.DATABASE[i + octaveDownorUp[Math.floor(Math.random() * octaveDownorUp.length)]];
+				while (octaveTone == "" || octaveTone == null) octaveTone = note.DATABASE[i + octaveDownorUp[Math.floor(Math.random() * octaveDownorUp.length)]];
 			}
         }
         //Button.MIDIplay(octaveTone);
-        Note.lastOctave = octaveTone;
+        note.lastOctave = octaveTone;
     }   
 
     public toString(): string {

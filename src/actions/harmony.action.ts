@@ -1,8 +1,8 @@
-import Button from "./action";
-import {Intervals} from '../logic/Intervals';
-import {Note} from '../logic/Note';
+import Action from "./action";
+import Intervals from '../logic/Intervals';
+import Note from '../logic/Note';
 
-class Harmony extends Button{
+class Harmony extends Action{
 
 	onPress(): void {
 		this.playNote();

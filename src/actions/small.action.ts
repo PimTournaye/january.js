@@ -1,6 +1,6 @@
-import Button from "./action";
+import Action from "./action";
 
-class Small extends Button {
+class Small extends Action {
 
   onPress(): void {
     console.log('playing smoll not')

@@ -1,10 +1,10 @@
-import Button from "./action";
-import { Mode } from "../logic/Mode";
+import Action from "./action";
+import mode from "../logic/Mode";
 
-class Chord extends Button {
+class Chord extends Action {
 
     onPress(): void {
-        Mode.change();
+        mode.change();
         this.playNote();
         this.playChord();
     }

@@ -1,38 +1,43 @@
-import { Module } from "module";
-import { Key } from "./Key";
-import { Mode } from "./Mode";
+import key from "./Key";
+import mode from "./Mode";
 
-export class Intervals {
+class Intervals {
     
-    public static DATABASE: Array<String> = ["one1", "two1", "thr1", "for1", "fiv1", "six1", "sev1", "one2", "two2", "thr2", "for2", "fiv2", "six2", "sev2", "one3", "two3", "thr3", "for3", "fiv3", "six3", "sev3", "one4"];
+    public DATABASE: Array<String> = ["one1", "two1", "thr1", "for1", "fiv1", "six1", "sev1", "one2", "two2", "thr2", "for2", "fiv2", "six2", "sev2", "one3", "two3", "thr3", "for3", "fiv3", "six3", "sev3", "one4"];
 
-    public static updated: Boolean = false;
-    public static loadout: Map<String, String>;
+    public updated: Boolean = false;
+    public loadout: Map<String, String>;
 
-    public static populate() {
+    public populate() {
         console.log("populating");
-        if (Intervals.updated == false) {
+        if (this.updated == false) {
             let modeOffset: number;
-            console.log(`Current key: ${Key.current}`)
-            console.log(`Current mode: ${Mode.DATABASE[Mode.index].name}`)
-            if (Key.current == "C Minor") {
-                modeOffset = Mode.DATABASE[Mode.index].minorPos;
+
+            console.log(`Current key: ${key.current}`)
+            console.log(`Current mode: ${mode.DATABASE[mode.index].name}`)
+
+            if (key.current == "C Minor") {
+                modeOffset = mode.DATABASE[mode.index].minorPos;
                 console.log("Minor position")
             } else {
-                modeOffset = Mode.DATABASE[Mode.index].majorPos;
+                modeOffset = mode.DATABASE[mode.index].majorPos;
                 console.log("Major position")
             }
 
-            Intervals.loadout = new Map();
-            for (let i = 0; i <= Intervals.DATABASE.length - 1; i++) {
-                let offset = Key.DATABASE[Math.floor(Math.random() * 2)];
+            this.loadout = new Map();
+
+            for (let i = 0; i <= this.DATABASE.length - 1; i++) {
+                let offset = key.DATABASE[Math.floor(Math.random() * 2)];
                 let newLoadout = offset[i + modeOffset];
-                Intervals.loadout.set(Intervals.DATABASE[i], newLoadout);                
+                this.loadout.set(this.DATABASE[i], newLoadout);                
             }
 
-            Intervals.updated = true;
-            console.log(Intervals.loadout);
+            this.updated = true;
+            console.log(this.loadout);
         }
-        else return Intervals.loadout;
+        else return this.loadout;
     }
 }
+
+const intervals = new Intervals();
+export default intervals;

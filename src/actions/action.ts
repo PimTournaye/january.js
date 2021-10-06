@@ -1,10 +1,10 @@
-import {Intervals} from '../logic/Intervals';
-import {Key} from '../logic/Key';
-import {Note} from '../logic/Note';
-import {Mode} from '../logic/Mode';
+import Key from '../logic/Key';
+import Note from '../logic/Note';
+import mode  from '../logic/Mode';
 import { WebMidi } from 'webmidi';
+import intervals from '../logic/Intervals';
 
-abstract class Button {
+abstract class Action {
 
 	WebMidi = WebMidi.enable().catch((err: any) => console.log("Error: Button property WebMidi, \n" + err));
 	
@@ -29,7 +29,7 @@ abstract class Button {
 	}
 	
 	protected playChord(){
-		let chordTones: any = Mode.current.chords[Math.floor(Math.random() * Mode.current.chords.length)];
+		let chordTones: any = mode.current.chords[Math.floor(Math.random() * mode.current.chords.length)];
 		console.log(`These are the chord tones: ${chordTones}`)
 		//Button.MIDIplay(Intervals.loadout.get(chordTones))
 
@@ -56,10 +56,10 @@ abstract class Button {
         let played: Boolean = false;
         let optionSets: Array<Array<String>>;
 
-		optionSets = Mode.current.logic;
-		console.log(Intervals.loadout)
-        for (let j = 0; j < Intervals.DATABASE.length; j++) {
-            if (Note.lastRecorded == Intervals.loadout.get(Intervals.DATABASE[j])){
+		optionSets = mode.current.logic;
+		console.log(intervals.loadout)
+        for (let j = 0; j < intervals.DATABASE.length; j++) {
+            if (Note.lastRecorded == intervals.loadout.get(intervals.DATABASE[j])){
 				this.play(optionSets[j]);
 				console.log('generated note, playing note');
                 played = true;
@@ -79,43 +79,43 @@ abstract class Button {
 			
 			// NOTE PREVENTIONS
 			random = Math.floor(Math.random()* options.length);
-			note = Intervals.loadout.get(options[random]);
+			note = intervals.loadout.get(options[random]);
 			
 			// Halve Probability of Trills and Repeats
 			if (note == Note.secondToLastRecorded || note == Note.lastAbsolute){
 				console.log("halvin probability of Trills and Repeats")
 				random = Math.random()* options.length;
-				note = Intervals.loadout.get(options[random]);
+				note = intervals.loadout.get(options[random]);
 			}
 			
 			let g = 0;		
 			while (g < 100 && (note == null
-				|| (note == Note.lastHarmony && Button.lastSoundtype == "Harmony")
-				|| (note == Note.lastOctave && Button.lastSoundtype == "Octave")
+				|| (note == Note.lastHarmony && Action.lastSoundtype == "Harmony")
+				|| (note == Note.lastOctave && Action.lastSoundtype == "Octave")
 				//|| (type == "Octave" && (note == Intervals.loadout.get("for1") || note == Intervals.loadout.get("for2") || note == Intervals.loadout.get("for3")))
 				))
 			{
 				random = Math.random() * options.length - 1;
-				note = Intervals.loadout.get(options[random]);
+				note = intervals.loadout.get(options[random]);
 				g++;
 			}				
 			
 			// Prevent certain tensions from triggering on record mode key changes
-		 if (Key.justChanged && Mode.current != Mode.MIXOLYDIAN
-			&& (note == Intervals.loadout.get("two1") ||
-				note == Intervals.loadout.get("for1") ||
-				note == Intervals.loadout.get("six1") ||
-				note == Intervals.loadout.get("for2") ||
-				note == Intervals.loadout.get("six2") ||
-				note == Intervals.loadout.get("for3") ||
-				note == Intervals.loadout.get("six3")) ) {
+		 if (Key.justChanged && mode.current != mode.MIXOLYDIAN
+			&& (note == intervals.loadout.get("two1") ||
+				note == intervals.loadout.get("for1") ||
+				note == intervals.loadout.get("six1") ||
+				note == intervals.loadout.get("for2") ||
+				note == intervals.loadout.get("six2") ||
+				note == intervals.loadout.get("for3") ||
+				note == intervals.loadout.get("six3")) ) {
 
-			for (let desc in Intervals.loadout.keys()) {
-				if (note == Intervals.loadout.get(desc)) {
-					for (let j = 0; j < Intervals.DATABASE.length - 1; j++) {
-						if (Intervals.loadout.get(desc) == Intervals.DATABASE[j]) {
+			for (let desc in intervals.loadout.keys()) {
+				if (note == intervals.loadout.get(desc)) {
+					for (let j = 0; j < intervals.DATABASE.length - 1; j++) {
+						if (intervals.loadout.get(desc) == intervals.DATABASE[j]) {
 							// change new note to be +/- 1 interval if the key just changed.
-							note = Intervals.loadout.get(Intervals.DATABASE[j + Math.random() < 0.5 ? -1 : 1]);
+							note = intervals.loadout.get(intervals.DATABASE[j + Math.random() < 0.5 ? -1 : 1]);
 							break;
 						}
 					}
@@ -129,7 +129,7 @@ abstract class Button {
 		
 }
 
-export default Button;
+export default Action;
 
 
 /* export const soundplayer = require('sound-play');
