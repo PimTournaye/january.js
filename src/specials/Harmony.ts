@@ -41,7 +41,7 @@ export class Harmony extends Button{
 		harmonyTone = Math.floor(Math.random() * choices.length);
 
 		let harmony: any;	
-		harmony = Button.MIDIplay(harmonyTone);
+		//harmony = Button.MIDIplay(harmonyTone);
 		
 		Note.lastHarmony = harmonyTone;
 	}

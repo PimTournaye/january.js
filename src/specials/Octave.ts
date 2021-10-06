@@ -18,7 +18,7 @@ export class Octave extends Button{
 				while (octaveTone == "" || octaveTone == null) octaveTone = Note.DATABASE[i + octaveDownorUp[Math.floor(Math.random() * octaveDownorUp.length)]];
 			}
         }
-        Button.MIDIplay(octaveTone);
+        //Button.MIDIplay(octaveTone);
         Note.lastOctave = octaveTone;
     }   
 }

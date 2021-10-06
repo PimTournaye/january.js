@@ -26,7 +26,7 @@ export async function playJZZMIDI(note: any) {
 export class Button {
 	WebMidi = WebMidi.enable().catch((err: any) => console.log(err));
 	
-	public static MIDIplay = (note: any) => WebMidi.getOutputByName("toKeyscape").channels[1].playNote(note, {duration: 10000});
+	//public static MIDIplay = (note: any) => WebMidi.getOutputByName("toKeyscape").channels[1].playNote(note, {duration: 10000});
 	public playsNote: Boolean = false;
 	public noteName: String = 'n/a';
 
@@ -43,14 +43,14 @@ export class Button {
 
     public static play(options: Array<String>){
 		let noteName = Button.noteAdjustments(options);
-		Button.MIDIplay(noteName);
+		//Button.MIDIplay(noteName);
 		//playJZZMIDI(noteName)
 	}
 	
 	public static playChord(){
 		let chordTones: any = Mode.current.chords[Math.floor(Math.random() * Mode.current.chords.length)];
 		console.log(`These are the chord tones: ${chordTones}`)
-		Button.MIDIplay(Intervals.loadout.get(chordTones))
+		//Button.MIDIplay(Intervals.loadout.get(chordTones))
 
 
 		//playJZZMIDI(Intervals.loadout.get(chordTones[0]));
