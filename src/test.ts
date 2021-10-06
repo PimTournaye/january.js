@@ -1,51 +1,35 @@
-import {
-    Intervals
-} from './music/Intervals.js';
-import {
-    Key
-} from './music/Key.js';
-import {
-    Note
-} from './music/Note.js';
-import {
-    Mode
-} from './music/Mode.js';
-import {
-    Small
-} from './specials/Small.js';
-import {
-    Harmony
-} from './specials/Harmony.js';
-import {
-    Octave
-} from './specials/Octave';
-import { Button
- } from './Button.js';
-import {
-    Transpose
-} from './specials/Transpose.js';
-import {
-    Chord
-} from './specials/Chord.js';
-import WebMidi from 'webmidi';
-//const {WebMidi}: any = require("webmidi");
+import {Intervals} from './music/Intervals.js';
+import {Key} from './music/Key.js';
+import {Note} from './music/Note.js';
+import {Mode} from './music/Mode.js';
+import {Small} from './specials/Small.js';
+import {Harmony} from './specials/Harmony.js';
+import {Octave} from './specials/Octave';
+import {Button} from './Button.js';
+import {Transpose} from './specials/Transpose.js';
+import {Chord} from './specials/Chord.js';
+import { WebMidi } from 'webmidi';
+
+// import * as WebMidi from 'webmidi';
+// //import WebMidi from 'webmidi';
+// const {WebMidi}: any = require("webmidi");
 
 
-WebMidi.enable().then(onEnabled).catch((err: any) => console.log(err));
+//WebMidi.enable().then(onEnabled).catch((err: any) => console.log(err));
 
-let output = WebMidi.getOutputByName("toKeyscape").channels[1]; 
+// let output = WebMidi.getOutputByName("toKeyscape").channels[1]; 
 
 
-function onEnabled() {
-  //console.log(WebMidi.inputs);
-  //console.log(WebMidi.inputs[3]);
-  //console.log("Channel", WebMidi.inputs[3].channels[1]);
+// function onEnabled() {
+//   //console.log(WebMidi.inputs);
+//   //console.log(WebMidi.inputs[3]);
+//   //console.log("Channel", WebMidi.inputs[3].channels[1]);
 
   
-  console.log(output)
-    //output.playNote(["G4", "G5"], {duration: 10000});
-    //Chord.Chord.onPress();
-};
+//   console.log(output)
+//     //output.playNote(["G4", "G5"], {duration: 10000});
+//     //Chord.Chord.onPress();
+// };
 
 Note.lastRecorded = 'C3';
 Mode.index = Math.floor(Math.random() * 4);
