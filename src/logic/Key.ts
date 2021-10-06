@@ -1,4 +1,5 @@
-import Intervals from "./Intervals";
+import { randomNumber } from "../utils/randomNumber";
+import intervals from "./Intervals";
 
 class Key{
     
@@ -11,22 +12,22 @@ class Key{
 	public justChanged: Boolean;
 
 	
-    public  change(){
+    public change(){
 
-        let newIndex: number = Math.random() * this.DATABASE.length - 1;
+        let newIndex: number = randomNumber(this.DATABASE.length-1)
 		
 		while (newIndex == this.index)
-			newIndex = Math.random() * this.DATABASE.length - 1;
+			newIndex = randomNumber(this.DATABASE.length-1);
 		
 		this.index = newIndex;
-		this.current = this.DATABASE[this.index];//this.index
-		Intervals.updated = false;
-		Intervals.populate();
+		this.current = this.DATABASE[this.index];
+		intervals.updated = false;
+		intervals.populate();
 
 		this.justChanged = true;
 	}
 
-	public  cycle() {
+	public cycle() {
 		this.change();
 	}
 }

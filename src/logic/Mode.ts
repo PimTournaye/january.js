@@ -1,7 +1,8 @@
 import { AEOLIAN, LYDIAN, MIXOLYDIAN } from './../database/mode-def.database';
 import { DORIAN, IONIAN } from "../database/mode-def.database";
-import Intervals from "./Intervals";
+import intervals from "./Intervals";
 import { ModeDef } from '../interface/mode.interface';
+import { randomNumber } from '../utils/randomNumber';
 
 class Mode {
 
@@ -22,13 +23,13 @@ class Mode {
 
 		if (modeIndex == -1){
 		
-			let newIndex = Math.floor(Math.random()* this.DATABASE.length);
+			let newIndex = randomNumber(this.DATABASE.length-1);
 
 			// Halve Probability of Mixolydian
-			if (newIndex == 3) newIndex = Math.floor(Math.random()* this.DATABASE.length);
+			if (newIndex == 3) newIndex = randomNumber(this.DATABASE.length-1);
 
 			while (newIndex == this.index){
-				newIndex = Math.floor(Math.random()* this.DATABASE.length);
+				newIndex = randomNumber(this.DATABASE.length-1);
 				this.index = newIndex;
 			}
 		} else {
@@ -44,9 +45,9 @@ class Mode {
 		this.current = this.DATABASE[this.index];
 		console.log(`New mode: ${this.current}`);
 
-		Intervals.updated = false;
-		console.log(`Intervals updated: ${Intervals.updated}`);
-		Intervals.populate();
+		intervals.updated = false;
+		console.log(`Intervals updated: ${intervals.updated}`);
+		intervals.populate();
 	}
 }
 
