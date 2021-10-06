@@ -1,10 +1,10 @@
-import {Intervals} from './music/Intervals';
-import {Key} from './music/Key';
-import {Note} from './music/Note';
-import {Mode} from './music/Mode';
-import { Small } from './specials/Small';
-import { Harmony } from './specials/Harmony';
-import { Octave } from './specials/Octave';
+import {Intervals} from '../logic/Intervals';
+import {Key} from '../logic/Key';
+import {Note} from '../logic/Note';
+import {Mode} from '../logic/Mode';
+import { Small } from '../sounds/Small';
+import { Harmony } from '../sounds/Harmony';
+import { Octave } from '../sounds/Octave';
 import { WebMidi } from 'webmidi';
 
 /* export const soundplayer = require('sound-play');

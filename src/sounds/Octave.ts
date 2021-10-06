@@ -1,5 +1,5 @@
-import { Button } from "../Button";
-import { Note } from "../music/Note";
+import { Button } from "../actions/Button";
+import { Note } from "../logic/Note";
 
 export class Octave extends Button{
 

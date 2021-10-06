@@ -1,4 +1,4 @@
-import { Button } from "../Button";
+import { Button } from "../actions/Button";
 
 export class Small extends Button {
   constructor(){

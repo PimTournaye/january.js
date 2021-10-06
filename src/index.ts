@@ -1,13 +1,13 @@
-import {Intervals} from './music/Intervals';
-import {Key} from './music/Key';
-import {Note} from './music/Note';
-import {Mode} from './music/Mode';
-import {Small} from './specials/Small';
-import {Harmony} from './specials/Harmony';
-import {Octave} from './specials/Octave';
-import {Button} from './Button';
-import {Transpose} from './specials/Transpose';
-import {Chord} from './specials/Chord';
+import {Intervals} from './logic/Intervals';
+import {Key} from './logic/Key';
+import {Note} from './logic/Note';
+import {Mode} from './logic/Mode';
+import {Small} from './sounds/Small';
+import {Harmony} from './sounds/Harmony';
+import {Octave} from './sounds/Octave';
+import {Button} from './actions/Button';
+import {Transpose} from './sounds/Transpose';
+import {Chord} from './sounds/Chord';
 import { WebMidi } from 'webmidi';
 
 // import * as WebMidi from 'webmidi';
@@ -31,12 +31,15 @@ import { WebMidi } from 'webmidi';
 //     //Chord.Chord.onPress();
 // };
 
+
+
 Note.lastRecorded = 'C3';
 Mode.index = Math.floor(Math.random() * 4);
 Mode.current = Mode.IONIAN;
 Note.lastOctave = 'C3';
 Mode.init();
- 
+
+while(true){
     Button.playChord();
     setTimeout(() => {
         console.log('Small playNote');
@@ -56,5 +59,4 @@ Mode.init();
         console.log('playing Octave');
         Octave.onPress();
     }, 12000);
-
-
+}

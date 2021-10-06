@@ -1,6 +1,6 @@
-import { Button } from "../Button";
-import { Key } from "../music/Key";
-import { Mode } from "../music/Mode";
+import { Button } from "../actions/Button";
+import { Key } from "../logic/Key";
+import { Mode } from "../logic/Mode";
 
 export class Transpose extends Button{
 

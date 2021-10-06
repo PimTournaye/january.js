@@ -1,6 +1,6 @@
-import { Button } from "../Button";
-import {Intervals} from '../music/Intervals';
-import {Note} from '../music/Note';
+import { Button } from "../actions/Button";
+import {Intervals} from '../logic/Intervals';
+import {Note} from '../logic/Note';
 
 export class Harmony extends Button{
 

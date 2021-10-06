@@ -1,5 +1,5 @@
-import { Button } from "../Button";
-import { Mode } from "../music/Mode";
+import { Button } from "../actions/Button";
+import { Mode } from "../logic/Mode";
 
 export class Chord extends Button {
 
@@ -9,3 +9,4 @@ export class Chord extends Button {
         Button.playChord();
     }
 }
+
