@@ -1,16 +1,21 @@
-import { Button } from "../actions/Button";
+import Button from "./button";
 import { Key } from "../logic/Key";
 import { Mode } from "../logic/Mode";
 
-export class Transpose extends Button{
-
-    public static onPress(){
+class Transpose extends Button{
+    onPress(): void {
         console.log('changing mode')
         Mode.change();
         console.log('changing key')
         Key.change();
         console.log('playing transposition chord')
-        Button.playChord();
+        this.playChord();
+    }
+
+    public toString(): string {
+        return "Chord";
     }
 }
 
+const transpose = new Transpose();
+export default transpose;

@@ -1,13 +1,13 @@
-import { Button } from "../actions/Button";
+import Button from "./button";
 import {Intervals} from '../logic/Intervals';
 import {Note} from '../logic/Note';
 
-export class Harmony extends Button{
+class Harmony extends Button{
 
-    public static onPress(){
-        Button.playNote();
+	onPress(): void {
+		this.playNote();
         Harmony.playHarmonyTone()
-    }
+	}
     
     private static playHarmonyTone() {
 
@@ -45,4 +45,11 @@ export class Harmony extends Button{
 		
 		Note.lastHarmony = harmonyTone;
 	}
+
+	public toString(): string {
+        return "Chord";
+    }
 }
+
+const harmony = new Harmony
+export default harmony;

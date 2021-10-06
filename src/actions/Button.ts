@@ -2,29 +2,11 @@ import {Intervals} from '../logic/Intervals';
 import {Key} from '../logic/Key';
 import {Note} from '../logic/Note';
 import {Mode} from '../logic/Mode';
-import { Small } from '../sounds/Small';
-import { Harmony } from '../sounds/Harmony';
-import { Octave } from '../sounds/Octave';
 import { WebMidi } from 'webmidi';
 
-/* export const soundplayer = require('sound-play');
-export const JZZ = require('jzz');
-require("jzz-midi-smf")(JZZ);
-export async function playJZZMIDI(note: any) {
-    var midi = await JZZ();
-    var port = await midi.openMidiOut();
-    await port.noteOn(0, note, 127);
-    await port.wait(2000);
-    await port.noteOff(0, note);
-    await port.close();
-    console.log('played:', note);
-} */
+abstract class Button {
 
-
-//export let MIDIplay = (note: any) => WebMidi.getOutputByName("toKeyscape").channels[1].playNote(note, {duration: 10000});
-
-export class Button {
-	WebMidi = WebMidi.enable().catch((err: any) => console.log(err));
+	WebMidi = WebMidi.enable().catch((err: any) => console.log("Error: Button property WebMidi, \n" + err));
 	
 	//public static MIDIplay = (note: any) => WebMidi.getOutputByName("toKeyscape").channels[1].playNote(note, {duration: 10000});
 	public playsNote: Boolean = false;
@@ -33,21 +15,20 @@ export class Button {
 	public type: String = "";
     private static lastSoundtype: String;
 
-    static sounds =     ["Small", "Octave", "Harmony", "Chord", "Transpose"];
-    static weights =    [ 88.5  ,  3.5	 ,  3.5		,  2	 ,  0.5]; 
-    static playsNote: boolean;
+	abstract onPress():void;
+	abstract toString():string;
 
-    public static playNote(){
-		Button.generateNote();
+    protected playNote(){
+		this.generateNote();
     }
 
-    public static play(options: Array<String>){
-		let noteName = Button.noteAdjustments(options);
+    protected play(options: Array<String>){
+		let noteName = this.noteAdjustments(options);
 		//Button.MIDIplay(noteName);
 		//playJZZMIDI(noteName)
 	}
 	
-	public static playChord(){
+	protected playChord(){
 		let chordTones: any = Mode.current.chords[Math.floor(Math.random() * Mode.current.chords.length)];
 		console.log(`These are the chord tones: ${chordTones}`)
 		//Button.MIDIplay(Intervals.loadout.get(chordTones))
@@ -69,7 +50,7 @@ export class Button {
 
 	}
 
-    public static generateNote(){
+    protected generateNote(){
 
         console.log('starting GenerateNote')
         let played: Boolean = false;
@@ -91,7 +72,7 @@ export class Button {
     }
 
 	//Edge cases and preventing chromatism hell
-    private static noteAdjustments(options: Array<String>):String {
+    protected noteAdjustments(options: Array<String>):String {
 			console.log('adjusting notes');
 			let note: any = "";
 			let random: number = 0;
@@ -148,3 +129,27 @@ export class Button {
 		
 }
 
+export default Button;
+
+
+/* export const soundplayer = require('sound-play');
+export const JZZ = require('jzz');
+require("jzz-midi-smf")(JZZ);
+export async function playJZZMIDI(note: any) {
+    var midi = await JZZ();
+    var port = await midi.openMidiOut();
+    await port.noteOn(0, note, 127);
+    await port.wait(2000);
+    await port.noteOff(0, note);
+    await port.close();
+    console.log('played:', note);
+} */
+
+
+//export let MIDIplay = (note: any) => WebMidi.getOutputByName("toKeyscape").channels[1].playNote(note, {duration: 10000});
+
+
+
+// static sounds =     ["Small", "Octave", "Harmony", "Chord", "Transpose"];
+//     static weights =    [ 88.5  ,  3.5	 ,  3.5		,  2	 ,  0.5]; 
+//     static playsNote: boolean;

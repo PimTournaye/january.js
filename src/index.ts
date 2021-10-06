@@ -1,18 +1,34 @@
+import { delay } from './utils/delay';
 import {Intervals} from './logic/Intervals';
 import {Key} from './logic/Key';
 import {Note} from './logic/Note';
 import {Mode} from './logic/Mode';
-import {Small} from './sounds/Small';
-import {Harmony} from './sounds/Harmony';
-import {Octave} from './sounds/Octave';
-import {Button} from './actions/Button';
-import {Transpose} from './sounds/Transpose';
-import {Chord} from './sounds/Chord';
 import { WebMidi } from 'webmidi';
+import chord from './actions/chord.button';
+import small from './actions/small.button';
+import transpose from './actions/transpose.button';
+import octave from './actions/octave.button';
+import Button from './actions/button';
 
-// import * as WebMidi from 'webmidi';
-// //import WebMidi from 'webmidi';
-// const {WebMidi}: any = require("webmidi");
+Note.lastRecorded = 'C3';
+Mode.index = Math.floor(Math.random() * 4);
+Mode.current = Mode.IONIAN;
+Note.lastOctave = 'C3';
+Mode.init();
+
+const actionsArray: Array<Button> = [small,chord,transpose,octave];
+
+main()
+
+async function main(){
+    for await (const action of actionsArray) {
+        console.log(action.toString() + " is playing")
+        action.onPress()
+        await delay(3000);
+    }
+}
+
+
 
 
 //WebMidi.enable().then(onEnabled).catch((err: any) => console.log(err));
@@ -31,32 +47,3 @@ import { WebMidi } from 'webmidi';
 //     //Chord.Chord.onPress();
 // };
 
-
-
-Note.lastRecorded = 'C3';
-Mode.index = Math.floor(Math.random() * 4);
-Mode.current = Mode.IONIAN;
-Note.lastOctave = 'C3';
-Mode.init();
-
-while(true){
-    Button.playChord();
-    setTimeout(() => {
-        console.log('Small playNote');
-        Small.playNote();
-    }, 3000);
-    
-    setTimeout(() => {
-        console.log('Chord playChord');
-        Chord.onPress();
-    }, 6000);
-    
-    setTimeout(() => {
-        console.log('playing Transpose');
-        Transpose.onPress();
-    }, 9000);
-    setTimeout(() => {
-        console.log('playing Octave');
-        Octave.onPress();
-    }, 12000);
-}

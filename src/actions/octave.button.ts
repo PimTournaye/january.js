@@ -1,14 +1,14 @@
-import { Button } from "../actions/Button";
+import Button from "./button";
 import { Note } from "../logic/Note";
 
-export class Octave extends Button{
+class Octave extends Button{
 
-    public static onPress(){
-        Button.playNote();
-        Octave.playOctave();
+    onPress(): void {
+        this.playNote();
+        this.playOctave();
     }
 
-     public static playOctave(){
+     public playOctave(){
         let octaveTone:String = "";
         let octaveDownorUp: Array<number> = [-12, 12]
 
@@ -21,4 +21,11 @@ export class Octave extends Button{
         //Button.MIDIplay(octaveTone);
         Note.lastOctave = octaveTone;
     }   
+
+    public toString(): string {
+        return "Chord";
+    }
 }
+
+const octave = new Octave();
+export default octave;
