@@ -10,18 +10,14 @@ import transpose from './actions/transpose.button';
 import octave from './actions/octave.button';
 import Button from './actions/button';
 
-Note.lastRecorded = 'C3';
-Mode.index = Math.floor(Math.random() * 4);
-Mode.current = Mode.IONIAN;
-Note.lastOctave = 'C3';
-Mode.init();
-
-const actionsArray: Array<Button> = [small,chord,transpose,octave];
+const ACTIONS_NAMES_ARRAY: Array<Button> = [small,chord,transpose,octave];
 
 main()
 
 async function main(){
-    for await (const action of actionsArray) {
+    Mode.init();
+
+    for await (const action of ACTIONS_NAMES_ARRAY) {
         console.log(action.toString() + " is playing")
         action.onPress()
         await delay(3000);
@@ -30,6 +26,11 @@ async function main(){
 
 
 
+
+// Note.lastRecorded = 'C3';
+// Mode.index = Math.floor(Math.random() * 4);
+// Mode.current = Mode.IONIAN;
+// Note.lastOctave = 'C3';
 
 //WebMidi.enable().then(onEnabled).catch((err: any) => console.log(err));
 

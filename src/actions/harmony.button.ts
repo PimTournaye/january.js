@@ -47,7 +47,7 @@ class Harmony extends Button{
 	}
 
 	public toString(): string {
-        return "Chord";
+        return "Harmony";
     }
 }
 

@@ -23,7 +23,7 @@ class Octave extends Button{
     }   
 
     public toString(): string {
-        return "Chord";
+        return "Octave";
     }
 }
 

@@ -8,7 +8,7 @@ class Small extends Button {
   }
 
   public toString(): string {
-    return "Chord";
+    return "Small";
 }
 }
 

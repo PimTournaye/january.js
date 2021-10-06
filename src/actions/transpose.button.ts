@@ -13,7 +13,7 @@ class Transpose extends Button{
     }
 
     public toString(): string {
-        return "Chord";
+        return "Transpose";
     }
 }
 
