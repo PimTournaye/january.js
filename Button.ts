@@ -19,15 +19,7 @@ export async function playJZZMIDI(note: any) {
     console.log('played:', note);
 } */
 
-
 let {WebMidi}: any = require("webmidi");
-
-
-
-
-
-
-
 
 //export let MIDIplay = (note: any) => WebMidi.getOutputByName("toKeyscape").channels[1].playNote(note, {duration: 10000});
 

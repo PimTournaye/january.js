@@ -4,7 +4,7 @@ var Note_js_1 = require("./music/Note.js");
 var Mode_js_1 = require("./music/Mode.js");
 var Small_js_1 = require("./specials/Small.js");
 var Octave_1 = require("./specials/Octave");
-var Button_1 = require("../FermataJS Markov/Button");
+var Button_js_1 = require("./Button.js");
 var Transpose_js_1 = require("./specials/Transpose.js");
 var Chord_js_1 = require("./specials/Chord.js");
 var WebMidi = require("webmidi").WebMidi;
@@ -24,7 +24,7 @@ Mode_js_1.Mode.index = Math.floor(Math.random() * 4);
 Mode_js_1.Mode.current = Mode_js_1.Mode.IONIAN;
 Note_js_1.Note.lastOctave = 'C3';
 Mode_js_1.Mode.init();
-Button_1.Button.playChord();
+Button_js_1.Button.playChord();
 setTimeout(function () {
     console.log('Small playNote');
     Small_js_1.Small.playNote();

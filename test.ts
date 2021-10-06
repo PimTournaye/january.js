@@ -19,9 +19,8 @@ import {
 import {
     Octave
 } from './specials/Octave';
-import {
-    Button
-} from '../FermataJS Markov/Button'
+import { Button
+ } from './Button.js';
 import {
     Transpose
 } from './specials/Transpose.js';
