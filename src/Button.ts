@@ -1,9 +1,9 @@
-import {Intervals} from './music/Intervals.js';
-import {Key} from './music/Key.js';
-import {Note} from './music/Note.js';
-import {Mode} from './music/Mode.js';
-import { Small } from './specials/Small.js';
-import { Harmony } from './specials/Harmony.js';
+import {Intervals} from './music/Intervals';
+import {Key} from './music/Key';
+import {Note} from './music/Note';
+import {Mode} from './music/Mode';
+import { Small } from './specials/Small';
+import { Harmony } from './specials/Harmony';
 import { Octave } from './specials/Octave';
 import { WebMidi } from 'webmidi';
 

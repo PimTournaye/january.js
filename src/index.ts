@@ -1,13 +1,13 @@
-import {Intervals} from './music/Intervals.js';
-import {Key} from './music/Key.js';
-import {Note} from './music/Note.js';
-import {Mode} from './music/Mode.js';
-import {Small} from './specials/Small.js';
-import {Harmony} from './specials/Harmony.js';
+import {Intervals} from './music/Intervals';
+import {Key} from './music/Key';
+import {Note} from './music/Note';
+import {Mode} from './music/Mode';
+import {Small} from './specials/Small';
+import {Harmony} from './specials/Harmony';
 import {Octave} from './specials/Octave';
-import {Button} from './Button.js';
-import {Transpose} from './specials/Transpose.js';
-import {Chord} from './specials/Chord.js';
+import {Button} from './Button';
+import {Transpose} from './specials/Transpose';
+import {Chord} from './specials/Chord';
 import { WebMidi } from 'webmidi';
 
 // import * as WebMidi from 'webmidi';
