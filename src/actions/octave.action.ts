@@ -1,4 +1,4 @@
-import Button from "./button";
+import Button from "./action";
 import { Note } from "../logic/Note";
 
 class Octave extends Button{

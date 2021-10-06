@@ -1,4 +1,4 @@
-import Button from "./button";
+import Button from "./action";
 import { Key } from "../logic/Key";
 import { Mode } from "../logic/Mode";
 

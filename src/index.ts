@@ -1,14 +1,10 @@
 import { delay } from './utils/delay';
-import {Intervals} from './logic/Intervals';
-import {Key} from './logic/Key';
-import {Note} from './logic/Note';
 import {Mode} from './logic/Mode';
-import { WebMidi } from 'webmidi';
-import chord from './actions/chord.button';
-import small from './actions/small.button';
-import transpose from './actions/transpose.button';
-import octave from './actions/octave.button';
-import Button from './actions/button';
+import chord from './actions/chord.action';
+import small from './actions/small.action';
+import transpose from './actions/transpose.action';
+import octave from './actions/octave.action';
+import Button from './actions/action';
 
 const ACTIONS_NAMES_ARRAY: Array<Button> = [small,chord,transpose,octave];
 

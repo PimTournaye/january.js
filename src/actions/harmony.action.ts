@@ -1,4 +1,4 @@
-import Button from "./button";
+import Button from "./action";
 import {Intervals} from '../logic/Intervals';
 import {Note} from '../logic/Note';
 
