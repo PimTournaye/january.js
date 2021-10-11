@@ -15,7 +15,7 @@ class Intervals {
 
             console.log(`Current key: ${key.current}`)
             console.log(`Current mode: ${mode.DATABASE[mode.index].name}`)
-
+            //Dit werkt niet meer
             if (key.current == "C Minor") {
                 modeOffset = mode.DATABASE[mode.index].minorPos;
                 console.log("Minor position")
@@ -26,11 +26,15 @@ class Intervals {
 
             this.loadout = new Map();
 
-            for (let i = 0; i <= this.DATABASE.length - 1; i++) {
-                let offset = key.DATABASE[Math.floor(Math.random() * 2)];
-                let newLoadout = offset[i + modeOffset];
-                this.loadout.set(this.DATABASE[i], newLoadout);                
-            }
+            this.DATABASE.forEach((element,index) =>{
+                this.loadout.set(element,key.DATABASE[key.index][index + modeOffset])
+            })
+
+            // for (let i = 0; i <= this.DATABASE.length - 1; i++) {
+            //     let offset = key.DATABASE[Math.floor(Math.random() * 2)];
+            //     let newLoadout = offset[i + modeOffset];
+            //     this.loadout.set(this.DATABASE[i], newLoadout);                
+            // }
 
             this.updated = true;
             console.log(this.loadout);
