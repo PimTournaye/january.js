@@ -32,13 +32,16 @@ class Mode {
 				newIndex = randomNumber(this.DATABASE.length-1);
 				this.index = newIndex;
 			}
+			this.index = newIndex;
 		} else {
 			this.index = modeIndex;
-			this.init();
 		}
+		this.init();
 	}
 
 	public init(){
+
+		//Hier gebeuren rare dingen
 		this.previous = this.current;
 		console.log(`Previous mode: ${this.previous}`);
 
