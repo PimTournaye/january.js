@@ -16,41 +16,38 @@ const pixel: any = require('node-pixel')
 //Pinout init
 //Pinouts are bound to change
 
-const smallButton1 = five.Button(2);
-const smallButton2 = five.Button(3);
-const smallButton3 = five.Button(4);
+const SMALL_BUTTON_1= five.Button(2);
+const SMALL_BUTTON_2 = five.Button(3);
+const SMALL_BUTTON_3 = five.Button(4);
 
-const octaveButton = five.Button(5);
-const vampButton = five.Button(6);
-const chordButton = five.Button(7);
+const OCTAVE_BUTTON = five.Button(5);
+const VAMP_BUTTON = five.Button(6);
+const CHROD_BUTTON = five.Button(7);
 
-const harmonyButton = five.Button(8);
-const transposeButton = five.Button(9);
+const HARMONY_BUTTON = five.Button(8);
+const TRANSPOSE_BUTTON = five.Button(9);
 
-const PIXEL_STICK_1_PIN = 10
-const PIXEL_STICK_2_PIN = 11
-const PIXEL_STICK_3_PIN = 12
-const PIXEL_STICK_4_PIN = 13
+const PIXEL_STICKS_PIN = 10
+
 
 const PIXEL_RING_SMALL_PIN = "AO";
-//const PIXEL_RING_BIG_CHORDS_PIN = null;
-//const PIXEL_RING_BIG_CHORDS_PIN = null;
-//const PIXEL_RING_BIG_CHORDS_PIN = null;
+const PIXEL_RING_BIG_CHORDS_PIN = null;
+const PIXEL_RING_BIG_HARMONY_PIN = null;
+const PIXEL_RING_BIG_TRANSPOSE_PIN = null;
 
-
-let pixelStick1, pixelStick2, pixelStick3, pixelStick4;
+// NeoPixel sticks and rings
+let pixelSticks
 let smallRings;
-let smallRingOctave;
 let bigRingsChords;
 let bigRingsHarmony;
-let bigRings
+let bigRingsTranspose;
 
 
 
 //Gamification
 let smallButtonScore: number = 0;
-let chordsScore: number = 0;
-let specialScore: number = 0;
+let chordButtonScore: number = 0;
+let specialButtonScore: number = 0;
 
 
 let smallThreshold: number;
@@ -73,40 +70,41 @@ let board = new five.Board();
 board.on("ready", () => {
 
 
-    //NeoPixel init
-    pixelStick1 = new pixel.Strip({
+    //NeoPixel Stick init
+    pixelSticks = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
-        strips: [ {pin: PIXEL_STICK_1_PIN, length: 8}, ],
+        strips: [ {pin: PIXEL_STICKS_PIN, length: 32}, ],
         gamma: 2.8,
-      });
-    pixelStick2 = new pixel.Strip({
-        board: this,
-        controller: "FIRMATA",
-        strips: [ {pin: PIXEL_STICK_2_PIN, length: 8}, ],
-        gamma: 2.8,
-      });
-    pixelStick3 = new pixel.Strip({
-        board: this,
-        controller: "FIRMATA",
-        strips: [ {pin: PIXEL_STICK_3_PIN, length: 8}, ],
-        gamma: 2.8,
-      });
-    pixelStick4 = new pixel.Strip({
-        board: this,
-        controller: "FIRMATA",
-        strips: [ {pin: PIXEL_STICK_4_PIN, length: 8}, ],
-        gamma: 2.8,
-      });
-
+    });
+    
     // Small rings init
-
     smallRings = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
-        strips: [ {pin: PIXEL_RING_SMALL_PIN, length: 64}, ],
+        strips: [ {pin: PIXEL_RING_BIG_CHORDS_PIN, length: 64}, ],
         gamma: 2.8,
-      });
+    });
+
+    // Big rings init
+    bigRingsChords = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: PIXEL_RING_SMALL_PIN, length: 48}, ],
+        gamma: 2.8,
+    });
+    bigRingsHarmony = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: PIXEL_RING_BIG_HARMONY_PIN, length: 24}, ],
+        gamma: 2.8,
+    });
+    bigRingsTranspose = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: PIXEL_RING_BIG_TRANSPOSE_PIN, length: 24}, ],
+        gamma: 2.8,
+    });
 
 
       //Score functions
@@ -119,22 +117,26 @@ board.on("ready", () => {
 
       function chordScore() {
 
-        // When a chord button is pressed, check if the chords are unlocked or if score is sufficient.
-        if (chordsScore >= chordThreshold) {
+        // When a chord button is pressed, check if the chords are unlocked or if score is sufficient (threshold).
+        if (chordButtonScore >= chordThreshold) {
             
+            // Substract some points / currency to prevent spamming
+
+            // Add 1 to 3 points to the score towards unlocking specials.
         }
 
-        // Substract some points / currency to prevent spamming
 
-        // Add 1 to 3 points to the score towards unlocking specials.
           
       }
 
       function specialScore() {
 
         // When a special button is pressed, check if the specials are unlocked or if score is sufficient.
+        if (specialButtonScore >= specialThreshold) {
 
-        // Substract some points / currency to prevent spamming
+            // Substract some points / currency to prevent spamming
+            
+        }
           
       }
 
