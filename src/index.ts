@@ -196,6 +196,7 @@ main()
    
 async function main(){
     mode.init();
+    mode.current = mode.IONIAN;
     note.lastRecorded = "C3"
 
     for await (const action of ACTIONS_NAMES_ARRAY) {
