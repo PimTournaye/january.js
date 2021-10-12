@@ -32,28 +32,37 @@ const PIXEL_STICK_2_PIN = 11
 const PIXEL_STICK_3_PIN = 12
 const PIXEL_STICK_4_PIN = 13
 
-let PIXEL_RING_SMALL_1_PIN, PIXEL_RING_SMALL_2_PIN, PIXEL_RING_SMALL_3_PIN = "AO";
-let PIXEL_RING_SMALL_4_PIN = "A1";
+const PIXEL_RING_SMALL_PIN = "AO";
+//const PIXEL_RING_BIG_CHORDS_PIN = null;
+//const PIXEL_RING_BIG_CHORDS_PIN = null;
+//const PIXEL_RING_BIG_CHORDS_PIN = null;
+
 
 let pixelStick1, pixelStick2, pixelStick3, pixelStick4;
-let smallRing1, smallRing2, smallRing3, smallRing4;
-let bigRing1, bigRing2, bigRing3, bigRing4;
+let smallRings;
+let smallRingOctave;
+let bigRingsChords;
+let bigRingsHarmony;
+let bigRings
 
 
 
 //Gamification
-let smallButtonScore = 0;
-let chordsScore = 0;
-let specialScore = 0;
+let smallButtonScore: number = 0;
+let chordsScore: number = 0;
+let specialScore: number = 0;
 
 
-let smallThreshold;
-let chordThreshold;
-let specialThreshold;
+let smallThreshold: number;
+let chordThreshold: number;
+let specialThreshold: number;
 
-let octaveUnlockScore;
-let chordsUnlockScore;
-let specialUnlockScore;
+let octaveUnlockScore: number;
+let chordsUnlockScore: number;
+let specialUnlockScore: number;
+
+let chordsAreUnlocked: boolean = false;
+let specialsAreUnlocked: boolean = false;
 
 
 
@@ -71,18 +80,49 @@ board.on("ready", () => {
         strips: [ {pin: PIXEL_STICK_1_PIN, length: 8}, ],
         gamma: 2.8,
       });
+    pixelStick2 = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: PIXEL_STICK_2_PIN, length: 8}, ],
+        gamma: 2.8,
+      });
+    pixelStick3 = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: PIXEL_STICK_3_PIN, length: 8}, ],
+        gamma: 2.8,
+      });
+    pixelStick4 = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: PIXEL_STICK_4_PIN, length: 8}, ],
+        gamma: 2.8,
+      });
+
+    // Small rings init
+
+    smallRings = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: PIXEL_RING_SMALL_PIN, length: 64}, ],
+        gamma: 2.8,
+      });
 
 
       //Score functions
       function smallScore() {
 
         // When a basic button is pressed, add 1 to 3 points to the score towards unlocking chords (smallButtonScore)
-          smallButtonScore += randomNumber()
+          smallButtonScore += randomNumber(3);
+
       }
 
       function chordScore() {
 
         // When a chord button is pressed, check if the chords are unlocked or if score is sufficient.
+        if (chordsScore >= chordThreshold) {
+            
+        }
 
         // Substract some points / currency to prevent spamming
 
