@@ -75,24 +75,39 @@ board.on("ready", () => {
 
       //Score functions
       function smallScore() {
+
+        // When a basic button is pressed, add 1 to 3 points to the score towards unlocking chords (smallButtonScore)
           smallButtonScore += randomNumber()
       }
 
       function chordScore() {
+
+        // When a chord button is pressed, check if the chords are unlocked or if score is sufficient.
+
+        // Substract some points / currency to prevent spamming
+
+        // Add 1 to 3 points to the score towards unlocking specials.
           
       }
 
       function specialScore() {
+
+        // When a special button is pressed, check if the specials are unlocked or if score is sufficient.
+
+        // Substract some points / currency to prevent spamming
           
       }
 
       // Basic/small button functions
 
     function smallAction() {
+        smallScore();
         console.log("Small note");
         small.onPress();
-        smallScore();
     }
+
+
+    // Buttons init
 
     smallButton1.on("down", smallAction());
     smallButton2.on("down", smallAction());
