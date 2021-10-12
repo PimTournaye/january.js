@@ -7,7 +7,7 @@ class Vamp extends Action {
     }
 
     public toString(): string {
-        return "Chord";
+        return "Vamp";
     }
 }
 

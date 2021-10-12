@@ -5,7 +5,6 @@ class Chord extends Action {
 
     onPress(): void {
         mode.change();
-        this.playNote();
         this.playChord();
     }
 
