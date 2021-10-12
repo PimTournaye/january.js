@@ -5,11 +5,15 @@ import small from './actions/small.action';
 import transpose from './actions/transpose.action';
 import octave from './actions/octave.action';
 import Action from './actions/action';
+import { randomNumber } from './utils/randomNumber';
+import vamp from './actions/vamp.action';
+import harmony from './actions/harmony.action';
 
 const five: any = require('johnny-five');
 const pixel: any = require('node-pixel')
 
 
+//Pinout init
 //Pinouts are bound to change
 
 const smallButton1 = five.Button(2);
@@ -28,12 +32,39 @@ const PIXEL_STICK_2_PIN = 11
 const PIXEL_STICK_3_PIN = 12
 const PIXEL_STICK_4_PIN = 13
 
-let pixelStick1, pixelStick2, pixelStick3, pixelStick4: any;
+let PIXEL_RING_SMALL_1_PIN, PIXEL_RING_SMALL_2_PIN, PIXEL_RING_SMALL_3_PIN = "AO";
+let PIXEL_RING_SMALL_4_PIN = "A1";
+
+let pixelStick1, pixelStick2, pixelStick3, pixelStick4;
+let smallRing1, smallRing2, smallRing3, smallRing4;
+let bigRing1, bigRing2, bigRing3, bigRing4;
+
+
+
+//Gamification
+let smallButtonScore = 0;
+let chordsScore = 0;
+let specialScore = 0;
+
+
+let smallThreshold;
+let chordThreshold;
+let specialThreshold;
+
+let octaveUnlockScore;
+let chordsUnlockScore;
+let specialUnlockScore;
+
+
+
+// MAIN
 
 let board = new five.Board();
 
 board.on("ready", () => {
 
+
+    //NeoPixel init
     pixelStick1 = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
@@ -41,10 +72,62 @@ board.on("ready", () => {
         gamma: 2.8,
       });
 
-    // Create a standard `led` component instance
+
+      //Score functions
+      function smallScore() {
+          smallButtonScore += randomNumber()
+      }
+
+      function chordScore() {
+          
+      }
+
+      function specialScore() {
+          
+      }
+
+      // Basic/small button functions
+
+    function smallAction() {
+        console.log("Small note");
+        small.onPress();
+        smallScore();
+    }
+
+    smallButton1.on("down", smallAction());
+    smallButton2.on("down", smallAction());
+    smallButton3.on("down", smallAction());
+
+    octaveButton.on("down", () => {
+        console.log("Octave notes");
+        octave.onPress();
+        smallScore();
+    })
     
-    // "blink" the led in 500ms
-    // on-off phase periods
+    vampButton.on("down", () => {
+        console.log("Vamp chord");
+        vamp.onPress();
+        chordScore();
+    })
+
+    chordButton.on("down", () => {
+        console.log("Vamp chord");
+        vamp.onPress();
+        chordScore();
+    })
+
+    harmonyButton.on("down", () => {
+        console.log("Harmony action");
+        harmony.onPress();
+        specialScore();
+    })
+
+    transposeButton.on("down", () => {
+        console.log("Transposed!");
+        transpose.onPress();
+        specialScore();
+    })
+
 });
 
 
