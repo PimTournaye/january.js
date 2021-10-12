@@ -6,7 +6,7 @@ import intervals from '../logic/Intervals';
 
 abstract class Action {
 
-	WebMidi = WebMidi.enable().catch((err: any) => console.log("Error: Button property WebMidi, \n" + err));
+	//WebMidi = WebMidi.enable().catch((err: any) => console.log("Error: Button property WebMidi, \n" + err));
 	
 	//public static MIDIplay = (note: any) => WebMidi.getOutputByName("toKeyscape").channels[1].playNote(note, {duration: 10000});
 	public playsNote: Boolean = false;
@@ -24,6 +24,8 @@ abstract class Action {
 
     protected play(options: Array<String>){
 		let noteName = this.noteAdjustments(options);
+		console.log(noteName);
+		
 		//Button.MIDIplay(noteName);
 		//playJZZMIDI(noteName)
 	}
@@ -32,7 +34,8 @@ abstract class Action {
 		let chordTones: any = mode.current.chords[Math.floor(Math.random() * mode.current.chords.length)];
 		console.log(`These are the chord tones: ${chordTones}`)
 		//Button.MIDIplay(Intervals.loadout.get(chordTones))
-
+		console.log(chordTones);
+		
 
 		//playJZZMIDI(Intervals.loadout.get(chordTones[0]));
 		//playJZZMIDI(Intervals.loadout.get(chordTones[1]));

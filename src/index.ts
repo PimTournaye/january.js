@@ -6,7 +6,7 @@ import transpose from './actions/transpose.action';
 import octave from './actions/octave.action';
 import Action from './actions/action';
 
-const ACTIONS_NAMES_ARRAY: Array<Action> = [small,chord,transpose,octave];
+const ACTIONS_NAMES_ARRAY: Array<Action> = [small ,chord,transpose,octave]; //small ,chord,transpose,octave
 
 main()
    
