@@ -2,8 +2,8 @@ import Action from "./action";
 
 class Vamp extends Action {
 
-    onPress(): void {
-        this.playChord();
+    onPress() {
+        return [...this.getChord()]
     }
 
     public toString(): string {
