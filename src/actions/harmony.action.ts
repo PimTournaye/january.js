@@ -1,55 +1,174 @@
 import Action from "./action";
-import Intervals from '../logic/Intervals';
-import Note from '../logic/Note';
+import Intervals from "../logic/Intervals";
+import note from "../logic/Note";
 
-class Harmony extends Action{
+class Harmony extends Action {
+	onPress() {
+		this.getNote();
+		Harmony.getHarmonyTone();
 
-	onPress(): void {
-		this.playNote();
-        Harmony.playHarmonyTone()
+		return [this.getNote(), Harmony.getHarmonyTone()]
 	}
-    
-    private static playHarmonyTone() {
 
-		let harmonyTone: any;
-		let choices: Array<any> = [];
-		var i/* :Map<String, String> */ = Intervals.loadout;
+	private static getHarmonyTone() {
+		let harmonyTone: string | undefined;
+		let choices: Array<string | undefined>;
+		let intervals = Intervals.loadout;
 
-			 if (Note.lastAbsolute == i.get("one1")) choices = [i.get("thr1"), i.get("fiv1"), i.get("thr2"), i.get("fiv2")];
-		else if (Note.lastAbsolute == i.get("two1")) choices = [i.get("fiv1"), i.get("sev1"), i.get("fiv2")];
-		else if (Note.lastAbsolute == i.get("thr1")) choices = [i.get("fiv1"), i.get("one2")];
-		else if (Note.lastAbsolute == i.get("for1")) choices = [i.get("fiv1"), i.get("one2"), i.get("two2")];
-		else if (Note.lastAbsolute == i.get("fiv1")) choices = [i.get("thr1"), i.get("sev1"), i.get("thr2")];
-		else if (Note.lastAbsolute == i.get("six1")) choices = [i.get("one2"), i.get("thr2")];
-		else if (Note.lastAbsolute == i.get("sev1")) choices = [i.get("thr1"), i.get("fiv1"), i.get("thr2")];
-		else if (Note.lastAbsolute == i.get("one2")) choices = [i.get("fiv1"), i.get("thr2"), i.get("fiv2")];
-		else if (Note.lastAbsolute == i.get("two2")) choices = [i.get("fiv1"), i.get("fiv2"), i.get("sev2")];
-		else if (Note.lastAbsolute == i.get("thr2")) choices = [i.get("sev1"), i.get("one2"), i.get("fiv2"), i.get("sev2"), i.get("one3")];
-		else if (Note.lastAbsolute == i.get("for2")) choices = [i.get("two2"), i.get("fiv2"), i.get("one3")];
-		else if (Note.lastAbsolute == i.get("fiv2")) choices = [i.get("thr2"), i.get("sev2"), i.get("thr3")];
-		else if (Note.lastAbsolute == i.get("six2")) choices = [i.get("one3"), i.get("thr3")];
-		else if (Note.lastAbsolute == i.get("sev2")) choices = [i.get("thr2"), i.get("fiv2"), i.get("thr3")];
-		else if (Note.lastAbsolute == i.get("one3")) choices = [i.get("thr2"), i.get("fiv2"), i.get("thr3"), i.get("fiv3")];
-		else if (Note.lastAbsolute == i.get("two3")) choices = [i.get("fiv2"), i.get("sev2"), i.get("fiv3")];
-		else if (Note.lastAbsolute == i.get("thr3")) choices = [i.get("sev2"), i.get("one3"), i.get("fiv3"), i.get("sev3"), i.get("one4")];
-		else if (Note.lastAbsolute == i.get("for3")) choices = [i.get("two3"), i.get("fiv3"), i.get("one4")];
-		else if (Note.lastAbsolute == i.get("fiv3")) choices = [i.get("thr3"), i.get("sev3"), i.get("one4")];
-		else if (Note.lastAbsolute == i.get("six3")) choices = [i.get("thr3"), i.get("one4")];
-		else if (Note.lastAbsolute == i.get("sev3")) choices = [i.get("thr3"), i.get("fiv3")];
-		else if (Note.lastAbsolute == i.get("one4")) choices = [i.get("thr3"), i.get("fiv3")];
+		// convert the above logic to a switch statement
+		switch (note.lastPlayed) {
+			case intervals.get("one1"):
+				choices = [
+					intervals.get("thr1"),
+					intervals.get("fiv1"),
+					intervals.get("thr2"),
+					intervals.get("fiv2"),
+				];
+				break;
+			case intervals.get("two1"):
+				choices = [
+					intervals.get("fiv1"),
+					intervals.get("sev1"),
+					intervals.get("fiv2"),
+				];
+				break;
+			case intervals.get("thr1"):
+				choices = [intervals.get("fiv1"), intervals.get("one2")];
+				break;
+			case intervals.get("for1"):
+				choices = [
+					intervals.get("fiv1"),
+					intervals.get("one2"),
+					intervals.get("two2"),
+				];
+				break;
+			case intervals.get("fiv1"):
+				choices = [
+					intervals.get("thr1"),
+					intervals.get("sev1"),
+					intervals.get("thr2"),
+				];
+				break;
+			case intervals.get("six1"):
+				choices = [intervals.get("one2"), intervals.get("thr2")];
+				break;
+			case intervals.get("sev1"):
+				choices = [
+					intervals.get("thr1"),
+					intervals.get("fiv1"),
+					intervals.get("thr2"),
+				];
+				break;
+			case intervals.get("one2"):
+				choices = [
+					intervals.get("fiv1"),
+					intervals.get("thr2"),
+					intervals.get("fiv2"),
+				];
+				break;
+			case intervals.get("two2"):
+				choices = [
+					intervals.get("fiv1"),
+					intervals.get("fiv2"),
+					intervals.get("sev2"),
+				];
+				break;
+			case intervals.get("thr2"):
+				choices = [
+					intervals.get("sev1"),
+					intervals.get("one2"),
+					intervals.get("fiv2"),
+					intervals.get("sev2"),
+					intervals.get("one3"),
+				];
+				break;
+			case intervals.get("for2"):
+				choices = [
+					intervals.get("two2"),
+					intervals.get("fiv2"),
+					intervals.get("one3"),
+				];
+				break;
+			case intervals.get("fiv2"):
+				choices = [
+					intervals.get("thr2"),
+					intervals.get("sev2"),
+					intervals.get("thr3"),
+				];
+				break;
+			case intervals.get("six2"):
+				choices = [intervals.get("one3"), intervals.get("thr3")];
+				break;
+			case intervals.get("sev2"):
+				choices = [
+					intervals.get("thr2"),
+					intervals.get("fiv2"),
+					intervals.get("thr3"),
+				];
+				break;
+			case intervals.get("one3"):
+				choices = [
+					intervals.get("thr2"),
+					intervals.get("fiv2"),
+					intervals.get("thr3"),
+					intervals.get("fiv3"),
+				];
+				break;
+			case intervals.get("two3"):
+				choices = [
+					intervals.get("fiv2"),
+					intervals.get("sev2"),
+					intervals.get("fiv3"),
+				];
+				break;
+			case intervals.get("thr3"):
+				choices = [
+					intervals.get("sev2"),
+					intervals.get("one3"),
+					intervals.get("fiv3"),
+					intervals.get("sev3"),
+					intervals.get("one4"),
+				];
+				break;
+			case intervals.get("for3"):
+				choices = [
+					intervals.get("two3"),
+					intervals.get("fiv3"),
+					intervals.get("one4"),
+				];
+				break;
+			case intervals.get("fiv3"):
+				choices = [
+					intervals.get("thr3"),
+					intervals.get("sev3"),
+					intervals.get("one4"),
+				];
+				break;
+			case intervals.get("six3"):
+				choices = [intervals.get("thr3"), intervals.get("one4")];
+				break;
+			case intervals.get("sev3"):
+				choices = [intervals.get("thr3"), intervals.get("fiv3")];
+				break;
+			case intervals.get("one4"):
+				choices = [intervals.get("thr3"), intervals.get("fiv3")];
+				break;
+			default:
+				choices = [intervals.get("one1")];
+				break;
+		}
 
-		harmonyTone = Math.floor(Math.random() * choices.length);
+		const choice = choices[Math.floor(Math.random() * choices.length)];
+		harmonyTone = choice;
 
-		let harmony: any;	
-		//harmony = Button.MIDIplay(harmonyTone);
-		
-		Note.lastHarmony = harmonyTone;
+		note.lastHarmony = harmonyTone;
+		return harmonyTone;
 	}
 
 	public toString(): string {
-        return "Harmony";
-    }
+		return "Harmony";
+	}
 }
 
-const harmony = new Harmony
+const harmony = new Harmony();
 export default harmony;

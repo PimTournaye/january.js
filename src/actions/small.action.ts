@@ -3,8 +3,7 @@ import Action from "./action";
 class Small extends Action {
 
   onPress(): void {
-    console.log('playing smoll not')
-    this.playNote();
+    return this.getNote();
   }
 
   public toString(): string {

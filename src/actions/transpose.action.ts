@@ -1,15 +1,12 @@
 import Action from "./action";
-import Key from "../logic/Key";
+import key from "../logic/Key";
 import mode  from "../logic/Mode";
 
 class Transpose extends Action{
-    onPress(): void {
-        console.log('changing mode')
+    onPress() {
         mode.change();
-        console.log('changing key')
-        Key.change();
-        console.log('playing transposition chord')
-        this.playChord();
+        key.change();
+        return [...this.getChord()]
     }
 
     public toString(): string {
